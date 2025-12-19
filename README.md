@@ -19,5 +19,3 @@ A comprehensive blockchain explorer, featuring transaction history, block detail
 npm install
 npm start
 ```
-## Contribution type
-Explorer - Verifier (500-1500 points)
