@@ -1,31 +1,23 @@
-# GenLayer 测试网区块链浏览器
-
-一个全面的区块链浏览器，包含交易历史记录、区块详情、验证者信息和实时网络统计数据。
-
-## 项目信息
-- **完成时间**: 2025年12月12日
-- **GitHub账户**: fkw001
-- **QQ密码**: qq743413195
-
-## 功能特性
-- 交易历史记录查询
-- 区块详情展示
-- 验证者信息管理
-- 实时网络统计数据
-- 响应式设计
-
-## 技术栈
+# GenLayer Testnet Blockchain Explorer
+A comprehensive blockchain explorer, featuring transaction history, block details, validator information, and real-time network statistics.
+## Project Information
+- **Completion Date**: December 12, 2025
+## Functional Features
+- Transaction history inquiry
+- Block details display
+- Verifier information management
+- Real-time network statistics
+- Responsive design
+## Technology stack
 - React.js
 - Node.js
 - Express.js
 - Web3.js
 - CSS3
-
-## 安装和运行
+## Installation and Operation
 ```bash
 npm install
 npm start
 ```
-
-## 贡献类型
-验证者 - 探险家 (500-1500积分)
+## Contribution type
+Explorer - Verifier (500-1500 points)
