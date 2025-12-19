@@ -1,7 +1,7 @@
 # GenLayer Testnet Blockchain Explorer
 A comprehensive blockchain explorer, featuring transaction history, block details, validator information, and real-time network statistics.
 ## Project Information
-- **Completion Date**: December 12, 2025
+- **Completion Date**: December 19, 2025
 ## Functional Features
 - Transaction history inquiry
 - Block details display
