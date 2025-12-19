@@ -1,0 +1,9 @@
+@echo off
+echo 正在启动 GenLayer 测试网区块链浏览器...
+echo.
+echo 安装依赖包...
+npm install
+echo.
+echo 启动服务器...
+npm start
+pause

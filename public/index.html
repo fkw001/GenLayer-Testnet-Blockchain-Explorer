@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenLayer 测试网区块链浏览器</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <h1>GenLayer Explorer</h1>
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav-link active" data-section="dashboard">仪表板</a>
+                <a href="#" class="nav-link" data-section="blocks">区块</a>
+                <a href="#" class="nav-link" data-section="transactions">交易</a>
+                <a href="#" class="nav-link" data-section="validators">验证者</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- 仪表板部分 -->
+            <section id="dashboard" class="section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-blocks">0</h3>
+                            <p>总区块数</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-transactions">0</h3>
+                            <p>总交易数</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="active-validators">0</h3>
+                            <p>活跃验证者</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="network-hashrate">0</h3>
+                            <p>网络算力</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="recent-blocks">
+                        <h2>最新区块</h2>
+                        <div class="table-container">
+                            <table id="recent-blocks-table">
+                                <thead>
+                                    <tr>
+                                        <th>区块号</th>
+                                        <th>时间</th>
+                                        <th>交易数</th>
+                                        <th>验证者</th>
+                                        <th>Gas使用</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="recent-transactions">
+                        <h2>最新交易</h2>
+                        <div class="table-container">
+                            <table id="recent-transactions-table">
+                                <thead>
+                                    <tr>
+                                        <th>交易哈希</th>
+                                        <th>从</th>
+                                        <th>到</th>
+                                        <th>金额</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 区块部分 -->
+            <section id="blocks" class="section">
+                <h2>区块浏览器</h2>
+                <div class="search-bar">
+                    <input type="text" id="block-search" placeholder="搜索区块号或哈希...">
+                    <button onclick="searchBlock()"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="table-container">
+                    <table id="blocks-table">
+                        <thead>
+                            <tr>
+                                <th>区块号</th>
+                                <th>哈希</th>
+                                <th>时间</th>
+                                <th>交易数</th>
+                                <th>验证者</th>
+                                <th>Gas使用</th>
+                                <th>大小</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="blocks-pagination"></div>
+            </section>
+
+            <!-- 交易部分 -->
+            <section id="transactions" class="section">
+                <h2>交易浏览器</h2>
+                <div class="search-bar">
+                    <input type="text" id="transaction-search" placeholder="搜索交易哈希...">
+                    <button onclick="searchTransaction()"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="table-container">
+                    <table id="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>交易哈希</th>
+                                <th>区块</th>
+                                <th>从</th>
+                                <th>到</th>
+                                <th>金额</th>
+                                <th>Gas价格</th>
+                                <th>状态</th>
+                                <th>时间</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="transactions-pagination"></div>
+            </section>
+
+            <!-- 验证者部分 -->
+            <section id="validators" class="section">
+                <h2>验证者信息</h2>
+                <div class="validators-grid" id="validators-grid"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 GenLayer 测试网区块链浏览器 | 开发者: fkw001 | QQ: qq743413195</p>
+        </div>
+    </footer>
+
+    <!-- 连接状态指示器 -->
+    <div id="connection-status" class="connection-status disconnected">
+        <div class="status-dot"></div>
+        <span>连接中...</span>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
